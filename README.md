@@ -8,10 +8,10 @@ Consiste en crear un buscador de series cuyos datos los propociona una API y añ
 
 Para poder acceder al resultado de la evaluación, dispones de un enlace en la página principal de este repositorio. 
 
-INTRODUCIR LA URL
+https://beta.adalab.es/modulo-2-evaluacion-final-NataliaMigallon/
 
 Si además te interesa echar un vistazo al código, puedes clonar este repositorio para disponer de una copia en tu equipo a partir de esta ruta:
 
-INTRODUCIR LA RUTA
+https://github.com/Adalab/modulo-2-evaluacion-final-NataliaMigallon.git
 
 El único requisito es que tengas instalado algún programa que permita leer ficheros del tipo HTML, CSS o JS. 
