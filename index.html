@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
-    <header>
-      <h1>Buscador de series</h1>
+    <header class="header">
+      <h1 class="title">Buscador de series</h1>
     </header>
     <main>
-      <div class="filter">
+      <div class="form-container">
         <form class="js-form">
           <input
             type="text"
@@ -20,15 +20,19 @@
             id=""
             placeholder="Escribe aquí el nombre de la película"
             class="filter__input js-input"
+            value="dexter"
           />
         </form>
-        <button class="js-button">Buscar</button>
+        <button class="button js-button">Buscar</button>
       </div>
-      <div class="movies">
-        <ul class="movies__list js-movies-container"></ul>
-      </div>
-      <div class="js-favourites-movies">
-        <h2>Mis series favoritas</h2>
+      <div class="series__container">
+        <div class="favorites js-favorites-series">
+          <h2 class="favorites__title">Mis series favoritas</h2>
+          <ul class="js-favorites"></ul>
+        </div>
+        <div class="movies">
+          <ul class="movies__list js-series-container"></ul>
+        </div>
       </div>
     </main>
     <footer></footer>

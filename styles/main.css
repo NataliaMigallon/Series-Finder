@@ -2,4 +2,48 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  list-style-type: none;
+}
+.header {
+  background-color: grey;
+}
+.title {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding: 20px;
+}
+.form-container {
+  margin: 20px;
+}
+.filter__input {
+  padding: 5px;
+}
+.button {
+  margin-top: 5px;
+}
+.series__container {
+  display: flex;
+  flex-direction: row;
+}
+.favorites__title {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 20px;
+  padding: 20px;
+}
+.movies__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px;
+  order: -1;
+}
+.item1 {
+  background-color: grey;
+  margin: 5px;
+  padding: 8px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: center;
+}
+.item2 {
+  width: 150px;
 }

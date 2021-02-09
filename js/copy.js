@@ -29,10 +29,8 @@ function getDataFromApi() {
       }
       renderSeries();
       renderFavorites();
-      listenSerieEvents();
     });
 }
-buttonElement.addEventListener("click", getDataFromApi);
 
 // RENDER
 function renderSeries() {
@@ -52,58 +50,19 @@ function renderSeries() {
   listenSerieEvents();
 }
 
-/* // LISTEN SERIES EVENTS
-function listenSerieEvents() {
-  const serieFavElements = document.querySelectorAll(".js-favorites"); //OJO AQUI
-  for (const serieFavElement of serieFavElements) {
-    serieFavElement.addEventListener("click", handleSerie);
-  }
-}
- */
-function listenSerieEvents() {
-  const elements = document.querySelectorAll(".item1");
-  for (const element of elements) {
-    element.addEventListener("click", handleSerie);
-  }
-}
-
-/* function listenSerieEvents(ev) {
-  const itemClick = ev.currentTarget.id;
-  itemClick.addEventListener("click", handleSerie);
-  console.log(itemClick);
-} */
-
-function handleSerie(ev) {
-  /* const clickedSerieId = ev.currentTarget.id; */
-  const clickedSerieId = parseInt(ev.currentTarget.id); //NUEVOOOO
-  /* const clickedSerieId = parseInt(ev.currentTarget.myid); */
-  const favoritesFoundIndex = series.find(function () {
-    return series.id === clickedSerieId;
-  });
-  const serieFound = favorites.findIndex(function () {
-    return series.id === clickedSerieId;
-  });
-  if (serieFound === -1) {
-    favorites.push(favoritesFoundIndex);
-  } else {
-    favorites.splice(serieFound, 1);
-  }
-  renderFavorites();
-  renderSeries();
-}
-
-// RENDER FAVORITES
 function renderFavorites() {
   /*   let isFavoriteSerie;
    */ let htmlFav = "";
-  /* htmlFav += ulFavorites; */
   /*   let lcfav = getLocalStorage(); */
-  for (const serie of favorites) {
-    htmlFav += `<li class="js-favorites" id="${serie.id}">`;
-    htmlFav += `<img class="item2" src="${serie.img.medium}"/>`;
-    htmlFav += `<p>${serie.title}</p>`;
-    /*       htmlFav += lcfav[index]; */
-    htmlFav += "</li>";
+  for (const serie of series) {
+    if (isFavoriteSerie(serie.id)) {
+      htmlFav += `<li class="js-favorites" id="${serie.id}">`;
+      htmlFav += `<img class="item2" src="${serie.img.medium}"/>`;
+      htmlFav += `<p>${serie.title}</p>`;
+      /*       htmlFav += lcfav[index]; */
+      htmlFav += "</li>";
+    } else {
+    }
   }
   ulFavorites.innerHTML = htmlFav;
   listenSerieEvents();
@@ -127,13 +86,20 @@ function handleForm(ev) {
 }
 formElement.addEventListener("submit", handleForm);
 
-// FAVORITES
+// SEARCH
+function handleSearch() {
+  /*   renderSeries();
+   */
+}
+buttonElement.addEventListener("click", getDataFromApi);
+
+/* // FAVORITES
 function isFavoriteSerie(serie) {
   // compruebo si la paleta que recibo por parámetro está en los favoritos
   const favoriteFound = favorites.find((favorite) => {
     // la dificultad de esta función interna del find es saber que tengo que comparar
     // yo consolearía console.log(favorite, palette) para ver los datos que debo comparar
-    return favorites.id === serie.id;
+    return favorite.id === serie.id;
   });
   // find devuelve undefined si no lo encuentra
   // retorno si está o no está en favoritos
@@ -142,4 +108,31 @@ function isFavoriteSerie(serie) {
   } else {
     return true;
   }
+}
+ */
+// LISTEN SERIES EVENTS
+function listenSerieEvents() {
+  const serieFavElements = document.querySelectorAll(".js-favorites"); //OJO AQUI
+  for (const serieFavElement of serieFavElements) {
+    serieFavElement.addEventListener("click", handleSerie);
+  }
+}
+
+function handleSerie(ev) {
+  /* const clickedSerieId = ev.currentTarget.id; */
+  const clickedSerieId = parseInt(ev.currentTarget.myid); //NUEVOOOO
+  const favoritesFoundIndex = show.find(function (serie) {
+    return serie.id === clickedSerieId;
+  });
+  const serieFound = favorites.findIndex(function (show) {
+    return show.id === clickedSerieId;
+  });
+  if (serieFound === -1) {
+    favorites.push(favoritesFoundIndex);
+    console.log(favorites);
+  } else {
+    favorites.splice(serieFound, 1);
+  }
+  renderFavorites();
+  renderSeries();
 }
