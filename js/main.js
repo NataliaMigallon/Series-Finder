@@ -34,92 +34,90 @@ function getDataFromApi() {
 }
 buttonElement.addEventListener("click", getDataFromApi);
 
+// LOCAL STORAGE
+function setInLocalStorage() {
+  const stringFav = JSON.stringify(favorites); // convierte en string
+  localStorage.setItem("favorites", stringFav);
+}
+
+// TRAER DATOS LS vs LLAMAR API
+function getFromLocalStorage() {
+  const localStorageFav = localStorage.getItem("favorites");
+  if (localStorageFav === null) {
+    getDataFromApi();
+  } else {
+    const arrayFav = JSON.parse(localStorageFav); // convierte en array de nuevo
+    favorites = arrayFav;
+  }
+}
+
 // RENDER
 function renderSeries() {
   let htmlCode = "";
   for (const serie of series) {
-    htmlCode += `<li class="item1" data-myid=${serie.id}>`;
+    htmlCode += `<li class="item1 js-favorite" id="${serie.id}">`;
     if (serie.img === null) {
       htmlCode +=
         '<img class="item2" src="https://via.placeholder.com/210x295/ffffff/666666/?"/>';
     } else {
       htmlCode += `<img class="item2" src="${serie.img.medium}"/>`;
     }
-    htmlCode += `<p>${serie.title}</p>`;
+    htmlCode += `<h3>${serie.title}</h3>`;
     htmlCode += "</li>";
   }
   seriesContainer.innerHTML = htmlCode;
   listenSerieEvents();
 }
 
-/* // LISTEN SERIES EVENTS
+// LISTEN SERIES EVENTS
+
 function listenSerieEvents() {
-  const serieFavElements = document.querySelectorAll(".js-favorites"); //OJO AQUI
-  for (const serieFavElement of serieFavElements) {
-    serieFavElement.addEventListener("click", handleSerie);
-  }
-}
- */
-function listenSerieEvents() {
-  const elements = document.querySelectorAll(".item1");
-  for (const element of elements) {
-    element.addEventListener("click", handleSerie);
+  const serieElements = document.querySelectorAll(".js-favorite");
+  for (const serieElement of serieElements) {
+    serieElement.addEventListener("click", handleSerie);
   }
 }
 
-/* function listenSerieEvents(ev) {
-  const itemClick = ev.currentTarget.id;
-  itemClick.addEventListener("click", handleSerie);
-  console.log(itemClick);
-} */
+// Retorna ID de la serie seleccionada
 
 function handleSerie(ev) {
-  /* const clickedSerieId = ev.currentTarget.id; */
-  const clickedSerieId = parseInt(ev.currentTarget.id); //NUEVOOOO
-  /* const clickedSerieId = parseInt(ev.currentTarget.myid); */
-  const favoritesFoundIndex = series.find(function () {
-    return series.id === clickedSerieId;
+  const clickedSerieId = parseInt(ev.currentTarget.id); //
+  const favoritesFoundIndex = favorites.findIndex(function (favorite) {
+    return favorite.id === clickedSerieId;
   });
-  const serieFound = favorites.findIndex(function () {
-    return series.id === clickedSerieId;
-  });
-  if (serieFound === -1) {
-    favorites.push(favoritesFoundIndex);
+  if (favoritesFoundIndex === -1) {
+    const serieFound = series.find(function (serie) {
+      return serie.id === clickedSerieId;
+    });
+    favorites.push(serieFound);
   } else {
-    favorites.splice(serieFound, 1);
+    favorites.splice(favoritesFoundIndex, 1);
   }
+  setInLocalStorage();
   renderFavorites();
-  renderSeries();
+}
+
+// FAVORITES te devuelve la serie seleccionada como FAV
+function isFavoriteSerie(series) {
+  return !!favorites.find((favorite) => favorite.show.id === series.show.id);
 }
 
 // RENDER FAVORITES
 function renderFavorites() {
-  /*   let isFavoriteSerie;
-   */ let htmlFav = "";
-  /* htmlFav += ulFavorites; */
-  /*   let lcfav = getLocalStorage(); */
+  let htmlFav = "";
   for (const serie of favorites) {
-    htmlFav += `<li class="js-favorites" id="${serie.id}">`;
-    htmlFav += `<img class="item2" src="${serie.img.medium}"/>`;
-    htmlFav += `<p>${serie.title}</p>`;
-    /*       htmlFav += lcfav[index]; */
+    htmlFav += `<li class="item1 js-favorite js-clicked" id="${serie.id}">`;
+    htmlFav += `<img class="item2 js-clicked" src="${serie.img.medium}"/>`;
+    htmlFav += `<h3 class="js-clicked">${serie.title}</h3>`;
     htmlFav += "</li>";
+    if (isFavoriteSerie) {
+      ulFavorites.classList.add("js-clicked");
+    } else {
+    }
   }
   ulFavorites.innerHTML = htmlFav;
   listenSerieEvents();
 }
-
-/* function renderFavorites() {
-  let htmlFav = "";
-  let lcfav = getLocalStorage();
-  for (let index = 0; index < fav.length; index++) {
-    htmlFav += '<li class="js-favorite">';
-    htmlFav += lcfav[index];
-    html += "</li>";
-  }
-  htmlFav.innerHTML = htmlFav;
-  listenSerieEvents();
-} */
 
 // PREVENT DEFAULT
 function handleForm(ev) {
@@ -127,19 +125,5 @@ function handleForm(ev) {
 }
 formElement.addEventListener("submit", handleForm);
 
-// FAVORITES
-function isFavoriteSerie(serie) {
-  // compruebo si la paleta que recibo por parámetro está en los favoritos
-  const favoriteFound = favorites.find((favorite) => {
-    // la dificultad de esta función interna del find es saber que tengo que comparar
-    // yo consolearía console.log(favorite, palette) para ver los datos que debo comparar
-    return favorites.id === serie.id;
-  });
-  // find devuelve undefined si no lo encuentra
-  // retorno si está o no está en favoritos
-  if (favoriteFound === undefined) {
-    return false;
-  } else {
-    return true;
-  }
-}
+// ARRANCAR LA PÁGINA
+getFromLocalStorage();
