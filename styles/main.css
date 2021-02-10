@@ -17,6 +17,7 @@
 }
 .filter__input {
   padding: 5px;
+  width: 300px;
 }
 .button {
   margin-top: 5px;
@@ -26,7 +27,8 @@
   width: 70px;
   height: 20px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 16px;
+  font-size: 15px;
+  text-transform: uppercase;
 }
 .series__container {
   display: flex;
