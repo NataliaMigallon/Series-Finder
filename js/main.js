@@ -5,9 +5,12 @@ const inputElement = document.querySelector(".js-input");
 const formElement = document.querySelector(".js-form");
 const buttonElement = document.querySelector(".js-button");
 const ulFavorites = document.querySelector(".js-favorites");
+const btnLogElement = document.querySelector(".js-button-log");
 
 let series = [];
 let favorites = [];
+
+// BUTTON LOG
 
 // API
 
@@ -21,10 +24,12 @@ function getDataFromApi() {
         let title = serie.show.name;
         let img = serie.show.image;
         let id = serie.show.id;
+        let schedule = serie.show.schedule;
         series.push({
           id: id,
           img: img,
           title: title,
+          schedule: schedule,
         });
       }
       renderSeries();
@@ -33,6 +38,13 @@ function getDataFromApi() {
     });
 }
 buttonElement.addEventListener("click", getDataFromApi);
+
+function searchLog() {
+  for (const serie of series) {
+    console.log(serie.title);
+  }
+}
+btnLogElement.addEventListener("click", searchLog);
 
 // LOCAL STORAGE
 function setInLocalStorage() {
@@ -63,6 +75,7 @@ function renderSeries() {
       htmlCode += `<img class="item2" src="${serie.img.medium}"/>`;
     }
     htmlCode += `<h3>${serie.title}</h3>`;
+    htmlCode += `<p>${serie.schedule.time}</p>`;
     htmlCode += "</li>";
   }
   seriesContainer.innerHTML = htmlCode;
