@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Buscador de series</title>
+    <title>Series Finder</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
     <header class="header">
-      <h1 class="title">Buscador de series</h1>
+      <h1 class="title">Series Finder</h1>
     </header>
-    <main>
+    <main class="main">
       <div class="form-container">
         <form class="js-form">
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="Escribe aquí el nombre de la serie"
-            class="filter__input js-input"
-            value=""
-          />
+          <label>
+            <input
+              type="text"
+              placeholder="Search"
+              class="filter__input js-input"
+              value=""
+            />
+          </label>
         </form>
-        <button class="button js-button">Buscar</button>
+        <button class="button js-button">Search</button>
       </div>
       <div class="series__container">
         <div class="favorites js-favorites-series">
-          <h2 class="favorites__title">Mis series favoritas</h2>
+          <h2 class="favorites__title">Favorites</h2>
           <ul class="js-favorites"></ul>
         </div>
-        <div class="movies">
-          <ul class="movies__list js-series-container"></ul>
+        <div class="series">
+          <ul class="series__list js-series-container"></ul>
         </div>
       </div>
     </main>

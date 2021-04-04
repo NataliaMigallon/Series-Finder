@@ -36,7 +36,7 @@ buttonElement.addEventListener("click", getDataFromApi);
 
 // LOCAL STORAGE
 function setInLocalStorage() {
-  const stringFav = JSON.stringify(favorites); // convierte en string
+  const stringFav = JSON.stringify(favorites); // convierte en string el array
   localStorage.setItem("favorites", stringFav);
 }
 
@@ -50,6 +50,13 @@ function getFromLocalStorage() {
     favorites = arrayFav;
   }
 }
+//FILTRADO POR CADA TECLA PRESIONADA
+function handleFilter() {
+  renderFavorites();
+  getDataFromApi();
+  renderSeries();
+}
+inputElement.addEventListener("keyup", handleFilter);
 
 // RENDER
 function renderSeries() {
@@ -81,7 +88,7 @@ function listenSerieEvents() {
 // Retorna ID de la serie seleccionada
 
 function handleSerie(ev) {
-  const clickedSerieId = parseInt(ev.currentTarget.id); //
+  const clickedSerieId = parseInt(ev.currentTarget.id);
   const favoritesFoundIndex = favorites.findIndex(function (favorite) {
     return favorite.id === clickedSerieId;
   });
