@@ -1,17 +1,11 @@
-EVALUACIÓN FINAL DEL MÓDULO 2 (JAVA SCRIPT).
+## SERIES FINDER
 
-Este repositorio contiene la evaluación realizada por Natalia Migallón Fernández para el segundo módulo impartido por la escuela de programación ADALAB.
-El módulo ha consistido en su totalidad en el aprendizaje del lenguaje de programación Java Script. 
+Este ejercicio corresponde a la evaluación final del `módulo 2` del bootcamp cursado en [Adalab](https://adalab.es/). Durante el mismo he puesto en práctica los conocimientos adquiridos sobre ` Vanilla Java Script`.
 
-Concretamente, este ejercicio me ha permitido practicar las diferentes opciones que proporciona Java Script para desarrollar una web mínimamente interactiva.
-Consiste en crear un buscador de series cuyos datos los propociona una API y añadir una sección de "favoritos" que debe ser almacenada en el local storage.
+Se trata de una web para buscar series extraídas de una API, accediendo al servidor a través del `fetch`. Al realizar la búsqueda, la usuaria puede seleccionar las series que desee haciendo click en la carátula de la misma, y ésta pasará a la sección de `favorites`, cambiando su color para una mejor diferenciación con el resto de resultados. Al hacer click de nuevo en la carátula, la serie seleccionada dejará de aparecer en la sección de `favorites`. Además, la usuaria podrá mantener sus favoritas aún cuando la página se refresque o vuelva a acceder a la misma tiempo después. Esto es posible gracias a la función creada para almacenar esos datos en el `local storage`. 
 
-Para poder acceder al resultado de la evaluación, dispones de un enlace en la página principal de este repositorio. 
+Para ver el ejercicio haz click [aquí](https://nataliamigallon.github.io/Series-Finder/).
 
-https://beta.adalab.es/modulo-2-evaluacion-final-NataliaMigallon/
+### Instalación
 
-Si además te interesa echar un vistazo al código, puedes clonar este repositorio para disponer de una copia en tu equipo a partir de esta ruta:
-
-https://github.com/Adalab/modulo-2-evaluacion-final-NataliaMigallon.git
-
-El único requisito es que tengas instalado algún programa que permita leer ficheros del tipo HTML, CSS o JS. 
+Si además te interesa echar un vistazo al código y modificarlo, puedes clonar este repositorio para disponer de una copia en tu equipo a partir de esta [ruta](https://github.com/NataliaMigallon/Series-Finder.git). El único requisito es que tengas instalado algún programa que permita leer ficheros del tipo `HTML`, `CSS` o `JS`.
